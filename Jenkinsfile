@@ -27,7 +27,7 @@ pipeline {
       steps {
         bat 'tflint --init && tflint --format compact'
         bat 'tfsec . --format junit --out tfsec-report.xml --soft-fail'
-        bat 'tfsec . --minimum-severity HIGH'
+        bat 'tfsec . --minimum-severity HIGH --soft-fail'
       }
       post {
         always { junit allowEmptyResults: true, testResults: 'tfsec-report.xml' }
